@@ -1,0 +1,28 @@
+lcOUT = MONTAF() + CHR(13) + MONTAL()
+_CLIPTEXT = lcOUT
+
+PROC MONTAF
+	lcOUT = ''
+	FOR lnXI = 1 TO 300 STEP 4
+		lcOUT = lcOUT + 'f ' + TRANSFORM(lnXI) + ' ' + TRANSFORM(lnXI+1) + ' ' + TRANSFORM(lnXI+2) + ' ' + TRANSFORM(lnXI+3) + CHR(13)
+	ENDFOR
+	RETURN ( lcOUT )
+ENDPROC
+
+PROC MONTAL
+	lcOUT = ''
+	lnCONT = 0
+	FOR lnXI = 1 TO 300
+		lnCONT = lnCONT + 1
+		lcOUT = lcOUT + 'l ' + TRANSFORM(lnXI) + ' ' + TRANSFORM(lnXI+4) + CHR(13)
+		IF lnCONT = 4
+			lnCONT = 0
+			lnXI = lnXI + 4
+		ENDIF
+	ENDFOR
+	RETURN ( lcOUT )
+ENDPROC
+
+PROC TROCAMEIO
+	lcOUT = ''
+ENDPROC

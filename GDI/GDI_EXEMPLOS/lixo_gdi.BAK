@@ -1,0 +1,34 @@
+DO SYSTEM
+
+LOCAL loBMP AS XFCIMAGE
+LOCAL loGFX AS XFCGRAPHICS
+LOCAL loPEN AS XFCPEN
+
+IF TYPE('_screen.img1') <> 'O'
+	_SCREEN.AddObject('IMG1','IMAGE')
+	_SCREEN.IMG1.Visible = .t.
+	_SCREEN.IMG1.Height = 500
+	_SCREEN.IMG1.Width = 500
+ENDIF
+
+loBMP = _SCREEN.SYSTEM.Drawing.Bitmap.New(600,600)
+loGFX = _SCREEN.SYSTEM.Drawing.Graphics.FromImage(loBMP)
+loGFX.Clear(_screen.system.Drawing.Color.Black)
+
+loPEN = _SCREEN.SYSTEM.Drawing.Pen.New(_SCREEN.SYSTEM.Drawing.Brushes.White)
+
+loGFX.DrawArc(loPEN,300,300,150,150,360,300)
+
+loGFX.DrawPie(loPEN,200,200,120,120,200,300)
+loGFX.FillPie(_SCREEN.SYSTEM.Drawing.Brushes.Yellow,200,200,120,120,200,300)
+
+loGFX.DrawRectangle(loPEN, 100,100,50,50)
+loGFX.DrawRectangle(loPEN, 300,100,50,50)
+loGFX.FillRectangle(_SCREEN.SYSTEM.Drawing.Brushes.White, 200,100,50,50)
+
+*loIMG = _Screen.System.Drawing.Image.FromFile(GETPICT())
+*loGFX.DrawImage(loIMG, 0, 0, 100, 100)
+
+_screen.img1.pictureval = loBMP.GetPictureVal()
+
+*loBMP.Save('c:\gdi\teste.png')

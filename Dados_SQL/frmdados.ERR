@@ -1,0 +1,770 @@
+conexao
+Error in line 56: Unrecognized command verb.
+commandbutton
+Error in line 58: Unrecognized command verb.
+commandbutton
+Error in line 59: Unrecognized command verb.
+Left = 12
+Error in line 60: Statement is not in a procedure.
+Height = 27
+Error in line 61: Statement is not in a procedure.
+Width = 84
+Error in line 62: Statement is not in a procedure.
+Caption = "Conectar"
+Error in line 63: Statement is not in a procedure.
+TabIndex = 1
+Error in line 64: Statement is not in a procedure.
+Name = "cmdON"
+Error in line 65: Statement is not in a procedure.
+LOCAL lcCaminho, lcSenha as String
+Error in line 67: Statement is not in a procedure.
+LOCAL lnStatusConexao as Number
+Error in line 68: Statement is not in a procedure.
+STORE '' TO LcCAMINHO
+Error in line 69: Statement is not in a procedure.
+lnStatusConexao = ""
+Error in line 70: Statement is not in a procedure.
+IF NOT EMPTY(THISFORM.TXTDAdos.Value)
+Error in line 72: Statement is not in a procedure.
+MESSAGEBOX("Já há uma conexão, por favor verifique!", 48, THISFORM.Caption)
+Error in line 73: Statement is not in a procedure.
+RETURN
+Error in line 74: Statement is not in a procedure.
+ENDIF
+Error in line 75: Statement is not in a procedure.
+IF EMPTY(THISFORM.conexao)
+Error in line 77: Statement is not in a procedure.
+TEXT TO lcCaminho NOSHOW PRETEXT 7
+Error in line 78: Statement is not in a procedure.
+		DRIVER={SQL Server};
+Error in line 79: Statement is not in a procedure.
+		SERVER=BD3;
+Error in line 80: Statement is not in a procedure.
+		UID=sa;
+Error in line 81: Statement is not in a procedure.
+		PWD=(SENHA);
+Error in line 82: Statement is not in a procedure.
+		DATABASE=volpepwiteste;
+Error in line 83: Statement is not in a procedure.
+	ENDTEXT
+Error in line 84: Statement is not in a procedure.
+lcSenha = INPUTBOX("Por Favor insira a senha")
+Error in line 85: Statement is not in a procedure.
+IF NOT EMPTY(lcSenha)
+Error in line 86: Statement is not in a procedure.
+lcCaminho = STRTRAN(lcCaminho, "(SENHA)", LOWER(lcSenha))
+Error in line 87: Statement is not in a procedure.
+lnStatusConexao = SQLSTRINGCONNECT(lcCaminho)
+Error in line 88: Statement is not in a procedure.
+ELSE
+Error in line 89: Statement is not in a procedure.
+RETURN
+Error in line 90: Statement is not in a procedure.
+ENDIF
+Error in line 91: Statement is not in a procedure.
+ELSE
+Error in line 92: Statement is not in a procedure.
+lcSenha = iNPUTBOX("Por Favor insira a senha")
+Error in line 93: Statement is not in a procedure.
+IF NOT EMPTY(lcSenha)	
+Error in line 94: Statement is not in a procedure.
+thisform.conexao = STRTRAN(THISFORM.conexao,"(SENHA)", lcSenha)
+Error in line 95: Statement is not in a procedure.
+lnStatusConexao = SQLSTRINGCONNECT(THISFORM.conexao)
+Error in line 96: Statement is not in a procedure.
+ELSE
+Error in line 97: Statement is not in a procedure.
+RETURN
+Error in line 98: Statement is not in a procedure.
+ENDIF
+Error in line 99: Statement is not in a procedure.
+ENDIF
+Error in line 100: Statement is not in a procedure.
+IF lnStatusConexao < 0
+Error in line 102: Statement is not in a procedure.
+MESSAGEBOX("Não foi possível conectar", 16, thisform.Caption)
+Error in line 104: Statement is not in a procedure.
+RETURN
+Error in line 105: Statement is not in a procedure.
+ELSE
+Error in line 109: Statement is not in a procedure.
+thisform.txtDados.Value = lnStatusConexao
+Error in line 110: Statement is not in a procedure.
+thisform.numero_conexao = thisform.numero_conexao + 1
+Error in line 111: Statement is not in a procedure.
+MESSAGEBOX("Conexão realizada com sucesso!", 64, thisform.Caption)
+Error in line 112: Statement is not in a procedure.
+ENDIF
+Error in line 113: Statement is not in a procedure.
+ENDPROC
+Error in line 117: Nesting error.
+ýù–
+Error in line 121: Unrecognized command verb.
+ýù–þ
+Error in line 123: Unrecognized command verb.
+ýùþ"
+Error in line 124: Unrecognized command verb.
+ýùrþ.
+Error in line 125: Unrecognized command verb.
+commandbutton
+Error in line 126: Unrecognized command verb.
+commandbutton
+Error in line 127: Unrecognized command verb.
+Left = 12
+Error in line 128: Statement is not in a procedure.
+Height = 27
+Error in line 129: Statement is not in a procedure.
+Width = 84
+Error in line 130: Statement is not in a procedure.
+Caption = "Desconectar"
+Error in line 131: Statement is not in a procedure.
+TabIndex = 2
+Error in line 132: Statement is not in a procedure.
+Name = "cmdOFF"
+Error in line 133: Statement is not in a procedure.
+LOCAL lnOFF AS Integer
+Error in line 135: Statement is not in a procedure.
+IF thisform.txtDados.Value = 0 Then
+Error in line 137: Statement is not in a procedure.
+MESSAGEBOX("Não há ligações ativas, por favor verifique!", 48, thisform.Caption)
+Error in line 138: Statement is not in a procedure.
+RETURN
+Error in line 139: Statement is not in a procedure.
+ENDIF
+Error in line 140: Statement is not in a procedure.
+lnOFF = SQLDISCONNECT(thisform.txtDados.Value)
+Error in line 142: Statement is not in a procedure.
+IF lnOFF <= 0
+Error in line 144: Statement is not in a procedure.
+MESSAGEBOX("Falha ao desconectar!", 16, thisform.Caption)
+Error in line 145: Statement is not in a procedure.
+ELSE
+Error in line 146: Statement is not in a procedure.
+thisform.numero_conexao = thisform.numero_conexao - 1
+Error in line 147: Statement is not in a procedure.
+thisform.txtDados.Value = thisform.txtDados.Value - 1
+Error in line 148: Statement is not in a procedure.
+MESSAGEBOX("Conexão encerrada com sucesso!", 64, thisform.Caption)
+Error in line 149: Statement is not in a procedure.
+ENDIF
+Error in line 150: Statement is not in a procedure.
+ENDPROC
+Error in line 152: Nesting error.
+
+Error in line 154: Unrecognized command verb.
+
+Error in line 155: Unrecognized command verb.
+
+Error in line 156: Unrecognized command verb.
+commandbutton
+Error in line 157: Unrecognized command verb.
+commandbutton
+Error in line 158: Unrecognized command verb.
+Left = 12
+Error in line 159: Statement is not in a procedure.
+Height = 27
+Error in line 160: Statement is not in a procedure.
+Width = 84
+Error in line 161: Statement is not in a procedure.
+Cancel = .T.
+Error in line 162: Statement is not in a procedure.
+Caption = "Sair"
+Error in line 163: Statement is not in a procedure.
+TabIndex = 3
+Error in line 164: Statement is not in a procedure.
+Name = "cmdSair"
+Error in line 165: Statement is not in a procedure.
+THISFORM.QueryUnload()
+Error in line 167: Statement is not in a procedure.
+ENDPROC
+Error in line 170: Nesting error.
+Value = 0
+Error in line 173: Statement is not in a procedure.
+Height = 23
+Error in line 174: Statement is not in a procedure.
+Left = 12
+Error in line 175: Statement is not in a procedure.
+ReadOnly = .T.
+Error in line 176: Statement is not in a procedure.
+TabIndex = 13
+Error in line 177: Statement is not in a procedure.
+Top = 36
+Error in line 178: Statement is not in a procedure.
+Width = 84
+Error in line 179: Statement is not in a procedure.
+Name = "txtDados"
+Error in line 180: Statement is not in a procedure.
+Height = 204
+Error in line 182: Statement is not in a procedure.
+Left = 108
+Error in line 183: Statement is not in a procedure.
+TabIndex = 4
+Error in line 184: Statement is not in a procedure.
+Top = 36
+Error in line 185: Statement is not in a procedure.
+Width = 516
+Error in line 186: Statement is not in a procedure.
+Name = "edtInstrucao"
+Error in line 187: Statement is not in a procedure.
+LPARAMETERS nKeyCode, nShiftAltCtrl
+Error in line 189: Statement is not in a procedure.
+IF nKEYCODE =-3 
+Error in line 191: Statement is not in a procedure.
+thisform.cmdhistorico.Click()
+Error in line 192: Statement is not in a procedure.
+ENDIF
+Error in line 193: Statement is not in a procedure.
+IF nKEYCODE=-4 
+Error in line 195: Statement is not in a procedure.
+THISFORM.cmdExecutar.Click()
+Error in line 196: Statement is not in a procedure.
+ENDIF
+Error in line 197: Statement is not in a procedure.
+IF nKEYCODE =-5 
+Error in line 199: Statement is not in a procedure.
+thisform.imgNovo.Click()
+Error in line 200: Statement is not in a procedure.
+ENDIF
+Error in line 201: Statement is not in a procedure.
+ENDPROC
+Error in line 202: Nesting error.
+DeleteMark = .F.
+Error in line 205: Statement is not in a procedure.
+Height = 144
+Error in line 206: Statement is not in a procedure.
+Left = 12
+Error in line 207: Statement is not in a procedure.
+RecordMark = .F.
+Error in line 208: Statement is not in a procedure.
+TabIndex = 7
+Error in line 209: Statement is not in a procedure.
+Top = 319
+Error in line 210: Statement is not in a procedure.
+Width = 613
+Error in line 211: Statement is not in a procedure.
+Name = "grdDados"
+Error in line 212: Statement is not in a procedure.
+commandbutton
+Error in line 214: Unrecognized command verb.
+commandbutton
+Error in line 215: Unrecognized command verb.
+Left = 108
+Error in line 216: Statement is not in a procedure.
+Height = 27
+Error in line 217: Statement is not in a procedure.
+Width = 84
+Error in line 218: Statement is not in a procedure.
+Caption = "Executar"
+Error in line 219: Statement is not in a procedure.
+TabIndex = 5
+Error in line 220: Statement is not in a procedure.
+Name = "cmdExecutar"
+Error in line 221: Statement is not in a procedure.
+LOCAL lnExecutar, lnTempoInicial, lnTempoFinal, lnSucesso, lnQtdReg, lnTempo AS Number
+Error in line 223: Statement is not in a procedure.
+LOCAL ltHorario as Datetime
+Error in line 224: Statement is not in a procedure.
+LOCAL lcUsuario, lcSintaxe, lcInstrucao as String
+Error in line 225: Statement is not in a procedure.
+THISFORM.GRdDados.Value = ""
+Error in line 227: Statement is not in a procedure.
+tmDados = ""
+Error in line 228: Statement is not in a procedure.
+thisform.grdDados.Refresh()
+Error in line 229: Statement is not in a procedure.
+IF thisform.txtDados.Value <= 0
+Error in line 231: Statement is not in a procedure.
+MESSAGEBOX("Favor ligar a conexão, antes de executar uma instrução!", 48, thisform.Caption)
+Error in line 232: Statement is not in a procedure.
+RETURN
+Error in line 233: Statement is not in a procedure.
+ENDIF
+Error in line 234: Statement is not in a procedure.
+IF EMPTY(THISFORM.EDTInstrucao.Value)
+Error in line 236: Statement is not in a procedure.
+MESSAGEBOX("Por favor escreva a instrução!", 48, thisform.Caption)
+Error in line 237: Statement is not in a procedure.
+thisform.edtInstrucao.SetFocus
+Error in line 238: Statement is not in a procedure.
+RETURN
+Error in line 239: Statement is not in a procedure.
+ENDIF
+Error in line 240: Statement is not in a procedure.
+IF USED ("tmpDados")
+Error in line 242: Statement is not in a procedure.
+SELE tmpDados
+Error in line 243: Statement is not in a procedure.
+USE 
+Error in line 244: Statement is not in a procedure.
+ENDIF
+Error in line 245: Statement is not in a procedure.
+lnTempoInicial = SECONDS()
+Error in line 247: Statement is not in a procedure.
+lcInstrucao = STRTRAN(thisform.edtInstrucao.Value, CHR(13), "")
+Error in line 248: Statement is not in a procedure.
+lnExecutar = SQLEXEC(thisform.txtDados.Value, lcInstrucao, 'tmpDados')
+Error in line 249: Statement is not in a procedure.
+lnTempoFinal = SECONDS()
+Error in line 251: Statement is not in a procedure.
+IF lnExecutar =< 0
+Error in line 253: Statement is not in a procedure.
+MESSAGEBOX("Erro na tentativa de conexão, por favor verifique a instrução e tente novamente!", 16, thisform.Caption)
+Error in line 254: Statement is not in a procedure.
+lnSucesso = 0
+Error in line 255: Statement is not in a procedure.
+lnQtdReg = 0
+Error in line 256: Statement is not in a procedure.
+lnTempo = 0
+Error in line 257: Statement is not in a procedure.
+ltHorario = DATETIME()
+Error in line 258: Statement is not in a procedure.
+lcSintaxe = ALLTRIM(thisform.edtInstrucao.Value)
+Error in line 259: Statement is not in a procedure.
+thisform.edtInstrucao.SetFocus
+Error in line 260: Statement is not in a procedure.
+ELSE
+Error in line 261: Statement is not in a procedure.
+thisform.grdDados.RecordSource = 'tmpDados'
+Error in line 262: Statement is not in a procedure.
+thisform.txttempo.value = lnTempoFinal - lnTempoInicial
+Error in line 263: Statement is not in a procedure.
+GO BOTTOM
+Error in line 264: Statement is not in a procedure.
+thisform.txtRegistros.Value = RECNO()
+Error in line 265: Statement is not in a procedure.
+GO TOP
+Error in line 266: Statement is not in a procedure.
+lnSucesso = 1
+Error in line 267: Statement is not in a procedure.
+lnQtdReg = thisform.txtRegistros.Value
+Error in line 268: Statement is not in a procedure.
+lnTempo = thisform.txtTempo.Value
+Error in line 269: Statement is not in a procedure.
+ltHorario = DATETIME()
+Error in line 270: Statement is not in a procedure.
+lcSintaxe = ALLTRIM(thisform.edtInstrucao.value)
+Error in line 271: Statement is not in a procedure.
+thisform.grdConexoes.AutoFit()
+Error in line 272: Statement is not in a procedure.
+THISFORM.grdDADOS.Refresh()
+Error in line 273: Statement is not in a procedure.
+thisform.cmdSalvar.Enabled = .T.
+Error in line 274: Statement is not in a procedure.
+ENDIF
+Error in line 275: Statement is not in a procedure.
+lcUsuario = GETENV("USERNAME")
+Error in line 277: Statement is not in a procedure.
+Sele histsql
+Error in line 279: Statement is not in a procedure.
+APPEND BLANK
+Error in line 280: Statement is not in a procedure.
+replace datahora WITH ltHorario ADDITIVE Sucesso WITH lnSucesso ADDITIVE Qtdereg WITH lnQtdReg ADDITIVE Tempo WITH lnTempo ADDITIVE Usuario WITH lcUsuario ADDITIVE Sintaxe WITH lcSintaxe
+Error in line 281: Statement is not in a procedure.
+ENDPROC
+Error in line 282: Nesting error.
+Ù
+Error in line 295: Unrecognized command verb.
+FontBold = .T.
+Error in line 318: Statement is not in a procedure.
+FontSize = 12
+Error in line 319: Statement is not in a procedure.
+FontCharSet = 0
+Error in line 320: Statement is not in a procedure.
+Anchor = 12
+Error in line 321: Statement is not in a procedure.
+BackStyle = 0
+Error in line 322: Statement is not in a procedure.
+Caption = "Registros:"
+Error in line 323: Statement is not in a procedure.
+Height = 22
+Error in line 324: Statement is not in a procedure.
+Left = 290
+Error in line 325: Statement is not in a procedure.
+Top = 485
+Error in line 326: Statement is not in a procedure.
+Width = 82
+Error in line 327: Statement is not in a procedure.
+TabIndex = 14
+Error in line 328: Statement is not in a procedure.
+Name = "Label1"
+Error in line 329: Statement is not in a procedure.
+Height = 23
+Error in line 331: Statement is not in a procedure.
+Left = 381
+Error in line 332: Statement is not in a procedure.
+ReadOnly = .T.
+Error in line 333: Statement is not in a procedure.
+TabIndex = 10
+Error in line 334: Statement is not in a procedure.
+Top = 484
+Error in line 335: Statement is not in a procedure.
+Width = 60
+Error in line 336: Statement is not in a procedure.
+Name = "txtRegistros"
+Error in line 337: Statement is not in a procedure.
+FontBold = .T.
+Error in line 339: Statement is not in a procedure.
+FontSize = 12
+Error in line 340: Statement is not in a procedure.
+FontCharSet = 0
+Error in line 341: Statement is not in a procedure.
+Anchor = 12
+Error in line 342: Statement is not in a procedure.
+BackStyle = 0
+Error in line 343: Statement is not in a procedure.
+Caption = "Tempo:"
+Error in line 344: Statement is not in a procedure.
+Height = 22
+Error in line 345: Statement is not in a procedure.
+Left = 483
+Error in line 346: Statement is not in a procedure.
+Top = 485
+Error in line 347: Statement is not in a procedure.
+Width = 61
+Error in line 348: Statement is not in a procedure.
+TabIndex = 15
+Error in line 349: Statement is not in a procedure.
+Name = "Label2"
+Error in line 350: Statement is not in a procedure.
+Height = 23
+Error in line 352: Statement is not in a procedure.
+Left = 552
+Error in line 353: Statement is not in a procedure.
+ReadOnly = .T.
+Error in line 354: Statement is not in a procedure.
+TabIndex = 11
+Error in line 355: Statement is not in a procedure.
+Top = 484
+Error in line 356: Statement is not in a procedure.
+Width = 60
+Error in line 357: Statement is not in a procedure.
+Name = "txtTempo"
+Error in line 358: Statement is not in a procedure.
+commandbutton
+Error in line 360: Unrecognized command verb.
+commandbutton
+Error in line 361: Unrecognized command verb.
+Left = 540
+Error in line 362: Statement is not in a procedure.
+Height = 27
+Error in line 363: Statement is not in a procedure.
+Width = 84
+Error in line 364: Statement is not in a procedure.
+Caption = "Histórico"
+Error in line 365: Statement is not in a procedure.
+TabIndex = 6
+Error in line 366: Statement is not in a procedure.
+Name = "cmdHistorico"
+Error in line 367: Statement is not in a procedure.
+DO FORM frmHistorico TO lcEscolha
+Error in line 369: Statement is not in a procedure.
+IF NOT EMPTY(LCescolha)
+Error in line 371: Statement is not in a procedure.
+thisform.edtInstrucao.Value = lcescolha
+Error in line 372: Statement is not in a procedure.
+thisform.edtInstrucao.SetFocus()
+Error in line 373: Statement is not in a procedure.
+ENDIF
+Error in line 374: Statement is not in a procedure.
+ENDPROC
+Error in line 376: Nesting error.
+ýùK
+Error in line 378: Unrecognized command verb.
+commandbutton
+Error in line 379: Unrecognized command verb.
+commandbutton
+Error in line 380: Unrecognized command verb.
+Left = 12
+Error in line 381: Statement is not in a procedure.
+Height = 27
+Error in line 382: Statement is not in a procedure.
+Width = 84
+Error in line 383: Statement is not in a procedure.
+Anchor = 6
+Error in line 384: Statement is not in a procedure.
+Caption = "Salvar como"
+Error in line 385: Statement is not in a procedure.
+Enabled = .F.
+Error in line 386: Statement is not in a procedure.
+TabIndex = 8
+Error in line 387: Statement is not in a procedure.
+Name = "cmdSalvar"
+Error in line 388: Statement is not in a procedure.
+LOCAL lcCaminho as String
+Error in line 390: Statement is not in a procedure.
+TRY 
+Error in line 392: Statement is not in a procedure.
+lcCaminho = PUTFILE("Nome do arquivo:", "Dados_01", "xls;CSV")
+Error in line 393: Statement is not in a procedure.
+CATCH
+Error in line 394: Statement is not in a procedure.
+MESSAGEBOX("Erro ao salvar, por favor tente novamente!", 16, thisform.Caption)
+Error in line 395: Statement is not in a procedure.
+RETURN
+Error in line 396: Statement is not in a procedure.
+ENDTRY
+Error in line 397: Statement is not in a procedure.
+IF EMPTY(lcCaminho)
+Error in line 399: Statement is not in a procedure.
+RETURN("")
+Error in line 400: Statement is not in a procedure.
+ENDIF 
+Error in line 401: Statement is not in a procedure.
+IF OCCURS("xls", LOWER(lcCaminho)) > 0
+Error in line 403: Statement is not in a procedure.
+COPY TO ALLTRIM(lcCaminho) TYPE xls
+Error in line 404: Statement is not in a procedure.
+ELSE
+Error in line 405: Statement is not in a procedure.
+COPY TO ALLTRIM(lcCaminho) TYPE CSV
+Error in line 406: Statement is not in a procedure.
+ENDIF
+Error in line 407: Statement is not in a procedure.
+MESSAGEBOX("Informações Gravadas com sucesso", 64, THISFORM.Caption) 
+Error in line 409: Statement is not in a procedure.
+ENDPROC
+Error in line 412: Nesting error.
+FontBold = .T.
+Error in line 415: Statement is not in a procedure.
+FontSize = 14
+Error in line 416: Statement is not in a procedure.
+FontCharSet = 0
+Error in line 417: Statement is not in a procedure.
+Anchor = 12
+Error in line 418: Statement is not in a procedure.
+BackStyle = 0
+Error in line 419: Statement is not in a procedure.
+Caption = "s"
+Error in line 420: Statement is not in a procedure.
+Height = 25
+Error in line 421: Statement is not in a procedure.
+Left = 614
+Error in line 422: Statement is not in a procedure.
+Top = 482
+Error in line 423: Statement is not in a procedure.
+Width = 13
+Error in line 424: Statement is not in a procedure.
+TabIndex = 16
+Error in line 425: Statement is not in a procedure.
+Name = "Label3"
+Error in line 426: Statement is not in a procedure.
+Anchor = 13
+Error in line 428: Statement is not in a procedure.
+DeleteMark = .F.
+Error in line 429: Statement is not in a procedure.
+Height = 426
+Error in line 430: Statement is not in a procedure.
+Left = 648
+Error in line 431: Statement is not in a procedure.
+RecordMark = .F.
+Error in line 432: Statement is not in a procedure.
+RecordSource = "Conexoes"
+Error in line 433: Statement is not in a procedure.
+TabIndex = 12
+Error in line 434: Statement is not in a procedure.
+Top = 36
+Error in line 435: Statement is not in a procedure.
+Width = 180
+Error in line 436: Statement is not in a procedure.
+AllowCellSelection = .F.
+Error in line 437: Statement is not in a procedure.
+Name = "grdConexoes"
+Error in line 438: Statement is not in a procedure.
+Column1.Name = "Column1"
+Error in line 439: Statement is not in a procedure.
+LOCAL lcCaption as String
+Error in line 441: Statement is not in a procedure.
+LOCAL lnRow as Number
+Error in line 442: Statement is not in a procedure.
+lcCaption = "Conexão (Alterar)"
+Error in line 444: Statement is not in a procedure.
+lnRow = RECNO()
+Error in line 445: Statement is not in a procedure.
+DO FORM frmConexoes with lcCaption, lnRow
+Error in line 448: Statement is not in a procedure.
+thisform.grdConexoes.Refresh()
+Error in line 449: Statement is not in a procedure.
+thisform.grdConexoes.AutoFit()
+Error in line 450: Statement is not in a procedure.
+ENDPROC
+Error in line 451: Nesting error.
+FontOutline = .F.
+Error in line 462: Statement is not in a procedure.
+FontSize = 10
+Error in line 463: Statement is not in a procedure.
+FontCharSet = 0
+Error in line 464: Statement is not in a procedure.
+Caption = "Nome:"
+Error in line 465: Statement is not in a procedure.
+Name = "Header1"
+Error in line 466: Statement is not in a procedure.
+Margin = 0
+Error in line 468: Statement is not in a procedure.
+ForeColor = 0,0,0
+Error in line 469: Syntax error.
+BackColor = 255,255,255
+Error in line 470: Syntax error.
+Name = "Text1"
+Error in line 471: Statement is not in a procedure.
+FontBold = .T.
+Error in line 473: Statement is not in a procedure.
+FontSize = 12
+Error in line 474: Statement is not in a procedure.
+FontCharSet = 0
+Error in line 475: Statement is not in a procedure.
+Anchor = 0
+Error in line 476: Statement is not in a procedure.
+BackStyle = 0
+Error in line 477: Statement is not in a procedure.
+Caption = "Instrução:"
+Error in line 478: Statement is not in a procedure.
+Height = 22
+Error in line 479: Statement is not in a procedure.
+Left = 108
+Error in line 480: Statement is not in a procedure.
+Top = 12
+Error in line 481: Statement is not in a procedure.
+Width = 80
+Error in line 482: Statement is not in a procedure.
+TabIndex = 17
+Error in line 483: Statement is not in a procedure.
+Name = "Label4"
+Error in line 484: Statement is not in a procedure.
+FontBold = .T.
+Error in line 486: Statement is not in a procedure.
+FontSize = 12
+Error in line 487: Statement is not in a procedure.
+FontCharSet = 0
+Error in line 488: Statement is not in a procedure.
+Anchor = 8
+Error in line 489: Statement is not in a procedure.
+BackStyle = 0
+Error in line 490: Statement is not in a procedure.
+Caption = "Conexões:"
+Error in line 491: Statement is not in a procedure.
+Height = 22
+Error in line 492: Statement is not in a procedure.
+Left = 648
+Error in line 493: Statement is not in a procedure.
+Top = 9
+Error in line 494: Statement is not in a procedure.
+Width = 86
+Error in line 495: Statement is not in a procedure.
+TabIndex = 18
+Error in line 496: Statement is not in a procedure.
+Name = "Label5"
+Error in line 497: Statement is not in a procedure.
+Picture = adicionar.png
+Error in line 499: Statement is not in a procedure.
+Stretch = 1
+Error in line 500: Statement is not in a procedure.
+BorderStyle = 0
+Error in line 501: Statement is not in a procedure.
+Height = 36
+Error in line 502: Statement is not in a procedure.
+Left = 673
+Error in line 503: Statement is not in a procedure.
+Top = 471
+Error in line 504: Statement is not in a procedure.
+Width = 48
+Error in line 505: Statement is not in a procedure.
+Name = "imgNovo"
+Error in line 506: Statement is not in a procedure.
+LPARAMETERS nButton, nShift, nXCoord, nYCoord
+Error in line 508: Statement is not in a procedure.
+thisform.imgNovo.BorderStyle = 1
+Error in line 509: Statement is not in a procedure.
+ENDPROC
+Error in line 510: Nesting error.
+imgExcluir
+Error in line 523: Unrecognized command verb.
+Picture = remove-duplicate-files-ltd-49688.gif
+Error in line 524: Syntax error.
+Stretch = 1
+Error in line 525: Statement is not in a procedure.
+BorderStyle = 0
+Error in line 526: Statement is not in a procedure.
+Height = 36
+Error in line 527: Statement is not in a procedure.
+Left = 742
+Error in line 528: Statement is not in a procedure.
+Top = 471
+Error in line 529: Statement is not in a procedure.
+Width = 48
+Error in line 530: Statement is not in a procedure.
+Name = "imgExcluir"
+Error in line 531: Statement is not in a procedure.
+LPARAMETERS nButton, nShift, nXCoord, nYCoord
+Error in line 533: Statement is not in a procedure.
+thisform.imgExcluir.BorderStyle = 1
+Error in line 534: Statement is not in a procedure.
+ENDPROC
+Error in line 535: Nesting error.
+FontBold = .T.
+Error in line 556: Statement is not in a procedure.
+FontSize = 12
+Error in line 557: Statement is not in a procedure.
+FontCharSet = 0
+Error in line 558: Statement is not in a procedure.
+Anchor = 0
+Error in line 559: Statement is not in a procedure.
+BackStyle = 0
+Error in line 560: Statement is not in a procedure.
+Caption = "Resultado:"
+Error in line 561: Statement is not in a procedure.
+Height = 22
+Error in line 562: Statement is not in a procedure.
+Left = 12
+Error in line 563: Statement is not in a procedure.
+Top = 291
+Error in line 564: Statement is not in a procedure.
+Width = 86
+Error in line 565: Statement is not in a procedure.
+TabIndex = 19
+Error in line 566: Statement is not in a procedure.
+Name = "Label6"
+Error in line 567: Statement is not in a procedure.
+commandbutton
+Error in line 569: Unrecognized command verb.
+commandbutton
+Error in line 570: Unrecognized command verb.
+Left = 108
+Error in line 571: Statement is not in a procedure.
+Height = 27
+Error in line 572: Statement is not in a procedure.
+Width = 96
+Error in line 573: Statement is not in a procedure.
+FontName = "Arial"
+Error in line 574: Statement is not in a procedure.
+FontCharSet = 1
+Error in line 575: Statement is not in a procedure.
+Caption = "Editar/Exportar"
+Error in line 576: Statement is not in a procedure.
+TabIndex = 9
+Error in line 577: Statement is not in a procedure.
+Name = "cmdEditar"
+Error in line 578: Statement is not in a procedure.
+IF EMPTY(THISFORM.txtDados.Value)
+Error in line 580: Statement is not in a procedure.
+MESSAGEBOX("Não há conexões ativas!", 48, THISFORM.Caption)
+Error in line 581: Statement is not in a procedure.
+RETURN(.F.)
+Error in line 582: Statement is not in a procedure.
+ENDIF
+Error in line 583: Statement is not in a procedure.
+IF EMPTY(THISFORM.grdDADOS.RecordSource)
+Error in line 585: Statement is not in a procedure.
+MESSAGEBOX("Execute uma instrução!", 48, THISFORM.Caption)
+Error in line 586: Statement is not in a procedure.
+RETURN(.F.)
+Error in line 587: Statement is not in a procedure.
+ENDIF
+Error in line 588: Statement is not in a procedure.
+SELECT TMPDADOS
+Error in line 590: Statement is not in a procedure.
+DO FORM INFO_EDITAR WITH THISFORM.DataSessionId
+Error in line 591: Statement is not in a procedure.
+ENDPROC
+Error in line 593: Nesting error.
+Arial, 1, 10, 6, 16, 13, 34, 3, 0
+Error in line 597: Unrecognized command verb.

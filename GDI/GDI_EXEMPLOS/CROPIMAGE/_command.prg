@@ -1,0 +1,1 @@
+MODIFY COMMAND c:\testesvf\estudo\cropimage\cropimage.prg AS 1252MODIFY FORM c:\testesvf\estudo\cropimage\cropimage.scx

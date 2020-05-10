@@ -1,0 +1,45 @@
+DO SYSTEM 
+
+IF TYPE('_screen.imgTABLE') <> 'O'
+	_SCREEN.AddObject('imgTABLE','IMAGE')
+	_SCREEN.imgTABLE.Visible = .T.
+	_SCREEN.imgTABLE.Height = _SCREEN.Height
+	_SCREEN.imgTABLE.Width  = _SCREEN.Width
+ENDIF
+
+
+LOCAL loIMAGE AS XFCIMAGE
+LOCAL loGFX AS XFCGRAPHICS
+LOCAL loSQ1 AS XFCBRUSH
+LOCAL loSQ2 AS XFCBRUSH
+LOCAL lcCSC as String
+LOCAL lnCont as Number
+LOCAL lnSSM as Number
+
+loIMAGE = _SCREEN.SYSTEM.Drawing.Bitmap.New(_SCREEN.imgTABLE.Width,_SCREEN.imgTABLE.Height)
+loGFX = _SCREEN.SYSTEM.Drawing.Graphics.FromImage(loIMAGE)
+
+&& Cores do Tabuleiro
+loSQ1 = _SCREEN.SYSTEM.Drawing.Brushes.PapayaWhip
+loSQ2 = _SCREEN.SYSTEM.Drawing.Brushes.Sienna
+
+&& Cores das Peças
+* Peças "Brancas" = LightSteelBlue
+* Peças "Pretas"  = DarkSlateGray
+
+&&Medida de cada Quadrado
+IF _SCREEN.imgTABLE.Height < _SCREEN.imgTABLE.Width
+	lnSSM = _SCREEN.imgTABLE.Height/8
+ELSE
+	lnSSM = _SCREEN.imgTABLE.Width/8
+ENDIF
+
+&& Para quadricular
+lcCSC = "IIF(MOD(lnCont,2)=MOD(INT(lnCont/8),2),loSQ1,loSQ2)"
+
+FOR lnCont=1 TO 63
+	loGFX.FillRectangle(&lcCSC,(MOD(lnCont,8)*lnSSM),(INT(lnCont/8)*lnSSM)-lnSSM,lnSSM,lnSSM)
+ENDFOR
+
+***********************
+_SCREEN.imgTABLE.PictureVal = loIMAGE.GetPictureVal()

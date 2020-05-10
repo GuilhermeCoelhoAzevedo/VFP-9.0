@@ -1,0 +1,43 @@
+*!*	IF FILE('C:\GDI\SYSTEM.APP')
+*!*		DO 'C:\GDI\SYSTEM.APP'
+*!*	ELSE
+*!*		DO 'SYSTEM.APP'
+*!*	ENDIF
+
+IF FILE('C:\gdi\system.app')	
+	DO 'C:\gdi\system.app'
+ELSE
+	IF FILE('system.app')
+		DO 'system.app'
+	ELSE
+		MESSAGEBOX('Arquivo SYSTEM.APP não encontrado!')
+	ENDIF
+ENDIF
+
+SET PROCEDURE TO CROPIMAGE ADDITIVE
+
+DO FORM CROPIMAGE
+
+READ EVENTS
+
+FUNC CALC_DIF_VAL
+********************
+LPARAMETERS tnVAL1, tnVAL2
+	IF VARTYPE(tnVAL1) <> 'N'
+		tnVAL1 = 0
+	ENDIF
+
+	IF VARTYPE(tnVAL2) <> 'N'
+		tnVAL2 = 0
+	ENDIF
+	
+	LOCAL lnRESULT AS Integer
+	
+	IF tnVAL2 > tnVAL1
+		lnRESULT = tnVAL2 - tnVAL1
+	ELSE
+		lnRESULT = tnVAL1 - tnVAL2
+	ENDIF
+	
+	RETURN(lnRESULT)
+ENDFUNC

@@ -1,0 +1,113 @@
+SELECT 
+
+MOV.PK_ID,
+MOV.DS_REFERENCIA,
+MOV.DT_VENCIMENTO,
+MOV.VL_BRUTO,
+MOV.VL_LIQUIDO,
+RAT.VL_RATEADO
+
+
+FROM FI_MOVFIN MOV
+
+LEFT JOIN FI_MOVRAT RAT ON RAT.FK_ORIGEM=MOV.PK_ID
+
+WHERE 
+RAT.FK_SEGMENTO = '201007'
+AND MOV.DT_VENCIMENTO >= CONVERT(DateTime,'01/01/2012',103)
+
+
+====
+
+SELECT 
+
+MOV.PK_ID,
+MOV.DS_REFERENCIA,
+MOV.DT_VENCIMENTO,
+MOV.VL_BRUTO,
+MOV.VL_LIQUIDO
+
+
+FROM FI_MOVFIN MOV
+
+LEFT JOIN FI_MOVRAT RAT ON RAT.FK_ORIGEM=MOV.PK_ID
+
+WHERE 
+RAT.FK_SEGMENTO = '201007'
+AND MOV.DT_VENCIMENTO >= CONVERT(DateTime,'01/01/2012',103)
+
+
+==
+
+CREATE VIEW VW_EMAILS
+AS
+(
+select 
+LOWER(ds_email) AS DS_EMAIL,
+ds_fantasia,
+'cad' as tg_origem,
+PK_ID AS FK_CADUNICO
+from tb_cadunico
+where ds_email > ' '
+
+union all
+
+select 
+LOWER(ds_email) AS DS_EMAIL,
+ds_login,
+'usu' as tg_origem,
+0 AS FK_CADUNICO
+from ts_usuarios
+where ds_email > ' '
+
+UNION ALL
+
+SELECT 
+LOWER(ds_email) AS DS_EMAIL,
+DS_NOME,
+'con' AS TG_ORIGEM,
+FK_CADUNICO
+FROM TB_CONTATOS
+WHERE DS_EMAIL > ' '
+)
+
+
+==
+CREATE VIEW VW_EMAILS
+AS
+
+select 
+ds_email,
+ds_fantasia,
+'cad' as tg_origem
+from tb_cadunico
+where ds_email > ' '
+
+union all
+
+select 
+ds_email,
+ds_login,
+'usu' as tg_origem
+from ts_usuarios
+where ds_email > ' '
+
+
+==
+
+
+select 
+ds_email,
+ds_fantasia,
+'cad' as tg_origem
+from tb_cadunico
+where ds_email > ' '
+
+union all
+
+select 
+ds_email,
+ds_login,
+'usu' as tg_origem
+from ts_usuarios
+where ds_email > ' '

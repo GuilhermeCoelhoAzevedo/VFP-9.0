@@ -1,0 +1,36 @@
+select 
+
+mov.dt_vencimento,
+
+sum (
+	case when tg_tipo='R'
+	then 1 else 0 end  
+) as qtd_itens_rec,
+
+sum (
+	case when tg_tipo='P'
+	then 1 else 0 end  
+) as qtd_itens_pag,
+
+sum (
+	case when tg_tipo='R'
+	then mov.vl_bruto else 0 end  
+) as val_rec,
+
+sum (
+	case when tg_tipo='P'
+	then mov.vl_bruto else 0 end  
+) as val_pag
+
+
+from fi_movfin mov
+
+where
+mov.dt_vencimento >= convert(datetime, '01/09/2012', 103)
+and mov.dt_vencimento <= convert(datetime, '31/12/2012', 103)
+and mov.dt_pagamento is null
+and mov.tg_tipo in ('R','P')
+
+group by mov.dt_vencimento
+
+order by dt_vencimento
